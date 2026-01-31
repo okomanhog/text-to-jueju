@@ -244,7 +244,7 @@ st.title("Chinese Wujue Poem Generator")
 
 wordbase_option = st.selectbox(
     "Choose Wordbase",
-    ("唐詩三百首 - Three Hundred Tang Poems", "Add own Wordbase")
+    ("唐詩三百首 - Three Hundred Tang Poems", "不同意罷免留言 - Anti Recall Comments", "Add own Wordbase")
 )
 
 raw_text = ""
