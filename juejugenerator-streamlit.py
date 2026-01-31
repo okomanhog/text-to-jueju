@@ -7,14 +7,17 @@ import tracery  # to generate poems based on given words
 import random  # to choose rhyme group
 from collections import Counter  # for optional frequency filtering
 import gettext
+import os
 
-st.set_page_config(page_title=("點字成詩 - Verse Alchemist"), layout="centered")
+# st.set_page_config must remain at the top
+st.set_page_config(page_title="點字成詩", layout="centered")
 
 lang_choice = st.sidebar.selectbox("Language / 語言", ["繁體中文", "English"]) # adds multilingual support
 lang_code = 'zh_TW' if lang_choice == "繁體中文" else 'en' # traditional chinese acts as a default considering the main target group
 
 try:
-    _ = gettext.translation('messages', localedir='locales', languages=[lang_code]).gettext
+    localizepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locales')
+    _ = gettext.translation('messages', localedir=localizepath, languages=[lang_code]).gettext
 except:
     _ = lambda s: s
 
