@@ -263,8 +263,8 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
 
             if repetition_filter:
                 poem_content = re.sub(r'【.*?】', '', poem) # removes title etc.
-                poem_words = [w for w in jieba.cut(poem_content, HMM=False) if w.strip()] # HMM is in order to adhere to the same chopping as in original
-                if len(poem_words) != len(set(poem_words)): # if unique count != total count, there are duplicates. regenerate.
+                chars = [character for caracter in poem_content if '\u4e00' <= character <= '\u9fa5'] # only includes chinese characters, ignores next line \n 
+                if len(chars) != len(set(chars)): 
                     continue
             
             generated_poems.append(poem)
