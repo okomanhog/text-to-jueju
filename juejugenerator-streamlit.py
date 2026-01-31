@@ -310,9 +310,12 @@ if raw_text:
         col1, col2 = st.columns(2)
         
         with col1:
-            rhyme_options = [_("Random")] + sorted(available_rhyme_groups)
-            rhyme_choice = st.selectbox(_("Choose Rhyme Group (Optional)"), rhyme_options)
-        
+            rhyme_options = [("Random")] + sorted(available_rhyme_groups)
+            rhyme_choice = st.selectbox(
+                _("Choose Rhyme Group (Optional)"), 
+                rhyme_options, 
+                format_func=lambda x: _("Random") if x == "Random" else x
+            )
         with col2:
             num_poems = st.slider(_("Number of Poems"), 1, 10, 5)
 
