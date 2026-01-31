@@ -230,7 +230,7 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
 
 # streamlit logic
 st.title("Verse Alchemist")
-st.header("Turn your Text into Jueju Poems")
+st.header("Turn any Text into Jueju Poems")
 
 user_input = st.text_area("Enter your Chinese text (100 - 10000 characters)", height=200)
 
