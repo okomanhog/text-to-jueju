@@ -269,7 +269,7 @@ if raw_text:
         min_freq = 1 # fixed based on original code defaults
         dictionary_data, available_rhyme_groups, unique_count = analyze_wordbase(raw_text, min_freq)
     
-    st.success(f"Analysis Complete! Based on total of {unique_count} words in {len(available_rhyme_groups)} rhyme groups.)
+    st.success(f"Analysis Complete! Based on total of {unique_count} words in {len(available_rhyme_groups)} rhyme groups.")
 
     if not available_rhyme_groups:
         st.error("No valid rhyme groups found in text. Ensure that your database is in Chinese.")
