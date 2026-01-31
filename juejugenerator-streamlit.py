@@ -6,9 +6,9 @@ import dragonmapper.hanzi  # for conversion to zhuyin
 import tracery  # to generate poems based on given words
 import random  # to choose rhyme group
 from collections import Counter  # for optional frequency filtering
-import gettext
-import os
-import polib
+import gettext # for multilingual support
+import os # to localize path
+import polib # to compile mo file for multilingual support
 
 def compile_translations():
     """
@@ -33,10 +33,8 @@ def compile_translations():
                 except Exception as e:
                     st.error(f"Failed to compile {po_path}: {e}")
 
-# Run compilation immediately
 compile_translations()
 
-# st.set_page_config must remain at the top
 st.set_page_config(page_title="點字成詩", layout="centered")
 
 lang_choice = st.sidebar.selectbox("Language / 語言", ["繁體中文", "English"])
@@ -45,7 +43,6 @@ localizepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locales
 
 if lang_choice == "繁體中文":
     try:
-        # Load the newly compiled 'messages.mo'
         translator = gettext.translation('messages', localedir=localizepath, languages=['zh_TW'])
         translator.install()
         _ = translator.gettext
@@ -353,4 +350,6 @@ to reduce repetitive workload and leverage its knowledge on different grammatica
 reference: https://chatgpt.com/s/t_6978d8c814a88191ac5f497d28d3e0cf
 - Gemini was used to turn the existing python code into a streamlit application for demo purposes based on
 given requirements, reference: https://gemini.google.com/share/dd1a4ec00677
+- Gemini was used to create multilingual support using gettext, reference https://gemini.google.com/share/e19632ff10c5
+and fixing subsequent bugs, reference: https://gemini.google.com/share/7f0ede5a5922
 '''))
