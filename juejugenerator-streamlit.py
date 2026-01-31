@@ -6,8 +6,14 @@ import dragonmapper.hanzi  # for conversion to zhuyin
 import tracery  # to generate poems based on given words
 import random  # to choose rhyme group
 from collections import Counter  # for optional frequency filtering
+import gettext
 
-st.set_page_config(page_title="Chinese Wujue Poem Generator", layout="centered")
+lang_choice = st.sidebar.selectbox("Language / 語言", ["繁體中文", "English"]) # adds multilingual support
+lang_code = 'zh_TW' if lang_choice == "繁體中文" else 'en' # traditional chinese acts as a default considering the main target group
+
+_ = gettext.translation('messages', localedir='locales', languages=[lang_code]).gettext
+
+st.set_page_config(page_title=_("點字成詩 - Verse Alchemist"), layout="centered")
 
 rules = {
     "origin": ["#poemformats#"],  # chooses one of eight common poem formats in chinese poetry
@@ -24,7 +30,7 @@ rules = {
     "仄起入平韻式": ["【仄起入平韻式 - {rhyme}】\n#仄仄仄平平_押#\n#平平仄仄平_押#\n#平平平仄仄_不押#\n#仄仄仄平平_押#"],
     "平起入仄韻式": ["【平起入仄韻式 - {rhyme}】\n#平平平仄仄_押#\n#仄仄平平仄_押#\n#仄仄仄平平_不押#\n#平平平仄仄_押#"],
     "平起不入平韻式": ["【平起不入平韻式 - {rhyme}】\n#平平平仄仄_不押#\n#仄仄仄平平_押#\n#仄仄平平仄_不押#\n#平平仄仄平_押#"],
-    "仄起不入仄韻式": ["【仄起不入仄韻式 - {rhyme}】\n#仄仄仄平平_不押#\n#平平平仄仄_押#\n#平平仄仄平_不押#\n#仄仄平平仄_押#"],
+    "仄起不入仄韻式": ["【仄起不入仄韻式 - {rhyme}】\n#仄仄仄平平_不押#\n#平平平仄仄_押#\n#平平仄仄平_不押#\n#平平仄仄平_押#"],
     "平起入平韻式": ["【平起入平韻式 - {rhyme}】\n#平平仄仄平_押#\n#仄仄仄平平_押#\n#仄仄平平仄_不押#\n#平平仄仄平_押#"],
     "仄起入仄韻式": ["【仄起入仄韻式 - {rhyme}】\n#仄仄平平仄_押#\n#平平平仄仄_押#\n#平平仄仄平_不押#\n#仄仄平平仄_押#"],
 
@@ -229,16 +235,16 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
     return generated_poems
 
 # streamlit logic
-st.title("Verse Alchemist")
-st.header("Turn any Text into Jueju Poems")
+st.title(_("Verse Alchemist"))
+st.header(_("Turn any Text into Jueju Poems"))
 
-user_input = st.text_area("Enter your Chinese text (100 - 10000 characters)", height=200)
+user_input = st.text_area(_("Enter your Chinese text (100 - 10000 characters)"), height=200)
 
-st.write("**Or**")
+st.write(_("**Or**"))
 
 wordbase_option = st.selectbox(
-    "Choose Wordbase",
-    ("唐詩三百首 - Three Hundred Tang Poems", "不同意罷免留言 - Anti Recall Comments")
+    _("Choose Wordbase"),
+    (_("唐詩三百首 - Three Hundred Tang Poems"), _("不同意罷免留言 - Anti Recall Comments"))
 )
 
 raw_text = ""
@@ -247,35 +253,35 @@ if user_input:
     if 100 <= len(user_input) <= 10000:
         raw_text = user_input
     else:
-        st.warning("Please ensure text is between 100 and 10000 characters.")
+        st.warning(_("Please ensure text is between 100 and 10000 characters."))
 else:
     file_path = f'wordbases/{wordbase_option}.txt'
     try:
         raw_text = open(file_path, encoding='utf-8').read()
     except FileNotFoundError:
-        st.error(f"File '{file_path}' not found. Please check the 'wordbases' folder in your repository.")
+        st.error(_("File '{file_path}' not found. Please check the 'wordbases' folder in your repository.").format(file_path=file_path))
 
 if raw_text:
-    with st.spinner("Analyzing wordbase..."):
+    with st.spinner(_("Analyzing wordbase...")):
         min_freq = 1 # fixed based on original code defaults
         dictionary_data, available_rhyme_groups, unique_count = analyze_wordbase(raw_text, min_freq)
     
     if not available_rhyme_groups:
-        st.error("No valid rhyme groups found in text. Ensure that your database is in Chinese.")
+        st.error(_("No valid rhyme groups found in text. Ensure that your database is in Chinese."))
     else:
         col1, col2 = st.columns(2)
         
         with col1:
-            rhyme_options = ["Random"] + sorted(available_rhyme_groups)
-            rhyme_choice = st.selectbox("Choose Rhyme Group (Optional)", rhyme_options)
+            rhyme_options = [_("Random")] + sorted(available_rhyme_groups)
+            rhyme_choice = st.selectbox(_("Choose Rhyme Group (Optional)"), rhyme_options)
         
         with col2:
-            num_poems = st.slider("Number of Poems", 1, 10, 5)
+            num_poems = st.slider(_("Number of Poems"), 1, 10, 5)
 
-        allow_repetition = st.checkbox("Allow Character Repetitions", value=False)
+        allow_repetition = st.checkbox(_("Allow Character Repetitions"), value=False)
         repetition_filter = not allow_repetition 
 
-        if st.button("Generate Poem"):
+        if st.button(_("Generate Poem")):
             poems = generate_poem(
                 dictionary_data, 
                 rules, 
@@ -286,19 +292,19 @@ if raw_text:
             )
             
             if not poems:
-                st.warning("Could not generate valid poems with current constraints. Try allowing repetition, changing rhyme group or use a bigger Wordbase).")
+                st.warning(_("Could not generate valid poems with current constraints. Try allowing repetition, changing rhyme group or use a bigger Wordbase)."))
             elif len(poems) < num_poems:
-                st.warning("Could not generate as many poems as requested with current constraints. Try allowing character repetition, changing rhyme group or use a bigger wordbase for more resutls).")
-                st.markdown("### Generated Poems")
+                st.warning(_("Could not generate as many poems as requested with current constraints. Try allowing character repetition, changing rhyme group or use a bigger wordbase for more resutls)."))
+                st.markdown(_("### Generated Poems"))
                 for p in poems:
                     st.code(p, language='text')
             else:
-                st.markdown("### Generated Poems")
+                st.markdown(_("### Generated Poems"))
                 for p in poems:
                     st.code(p, language='text')
 
-with st.expander("AI Usage Disclaimer"):
-    st.info('''
+with st.expander(_("AI Usage Disclaimer")):
+    st.info(_('''
 - Gemini was used to map the rhyme group in python, pinyin equivalents to each final based on publicly available table
 to reduce repetitive work, reference: https://gemini.google.com/share/72f39776edf1 (AI），https://zh.wikipedia.org/zh-hant/%E4%B8%AD%E8%8F%AF%E6%96%B0%E9%9F%BB (table)
 - ChatGPT was used to map all jieba POS tags to the three categories named Noun, Verb, Adjective
@@ -306,4 +312,4 @@ to reduce repetitive workload and leverage its knowledge on different grammatica
 reference: https://chatgpt.com/s/t_6978d8c814a88191ac5f497d28d3e0cf
 - Gemini was used to turn the existing python code into a streamlit application for demo purposes based on
 given requirements, reference: https://gemini.google.com/share/dd1a4ec00677
-''')
+'''))
