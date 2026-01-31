@@ -244,16 +244,15 @@ st.title("Chinese Wujue Poem Generator")
 
 user_input = st.text_area("Enter your Chinese text (100 - 10000 characters)", height=200)
 
-st.write("OR")
+st.write("**OR**")
 
 wordbase_option = st.selectbox(
-    "Choose Preexisting Wordbase",
+    "Choose Wordbase",
     ("唐詩三百首 - Three Hundred Tang Poems", "不同意罷免留言 - Anti Recall Comments")
 )
 
 raw_text = ""
 
-# 2. Handle Wordbase Input
 if user_input:
     if 100 <= len(user_input) <= 10000:
         raw_text = user_input
@@ -283,7 +282,7 @@ if raw_text:
         with col2:
             num_poems = st.slider("Number of Poems", 1, 10, 5)
 
-        allow_repetition = st.checkbox("allow character repetitions", value=False)
+        allow_repetition = st.checkbox("Allow Character Repetitions", value=False)
         repetition_filter = not allow_repetition 
 
         if st.button("Generate Poem"):
