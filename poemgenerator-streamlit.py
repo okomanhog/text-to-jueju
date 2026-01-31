@@ -258,11 +258,11 @@ if wordbase_option == "Add own Wordbase":
         else:
             st.warning("Please ensure text is between 100 and 10000 characters.")
 else:
-    file_path = f'{wordbase_option}.txt'
+    file_path = f'wordbases/{wordbase_option}.txt'
     try:
         raw_text = open(file_path, encoding='utf-8').read()
     except FileNotFoundError:
-        st.error(f"File '{file_path}' not found. Please ensure it is in the same directory.")
+        st.error(f"File '{file_path}' not found. Please check the 'wordbases' folder in your repository.")
 
 if raw_text:
     with st.spinner("Analyzing wordbase..."):
