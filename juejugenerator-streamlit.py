@@ -8,6 +8,33 @@ import random  # to choose rhyme group
 from collections import Counter  # for optional frequency filtering
 import gettext
 import os
+import polib
+
+def compile_translations():
+    """
+    Automatically compiles .po files to .mo files on startup.
+    This ensures that your edits on GitHub are always live in the app.
+    """
+    localizepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locales')
+    
+    # Walk through all language folders
+    for root, dirs, files in os.walk(localizepath):
+        for file in files:
+            if file.endswith('.po'):
+                po_path = os.path.join(root, file)
+                # Create the .mo path (e.g., messages.po -> messages.mo)
+                mo_path = po_path.replace('.po', '.mo')
+                
+                try:
+                    # Load the PO file and save it as MO
+                    po = polib.pofile(po_path)
+                    po.save_as_mofile(mo_path)
+                    # print(f"Compiled: {mo_path}") # Debugging
+                except Exception as e:
+                    st.error(f"Failed to compile {po_path}: {e}")
+
+# Run compilation immediately
+compile_translations()
 
 # st.set_page_config must remain at the top
 st.set_page_config(page_title="點字成詩", layout="centered")
