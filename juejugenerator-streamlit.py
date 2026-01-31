@@ -15,12 +15,66 @@ st.set_page_config(page_title="點字成詩", layout="centered")
 lang_choice = st.sidebar.selectbox("Language / 語言", ["繁體中文", "English"]) # adds multilingual support
 lang_code = 'zh_TW' if lang_choice == "繁體中文" else 'en' # traditional chinese acts as a default considering the main target group
 
-try:
-    localizepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locales')
-    _ = gettext.translation('messages', localedir=localizepath, languages=[lang_code]).gettext
-except:
-    _ = lambda s: s
+# --- START TRANSLATION SETUP ---
+localizepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locales')
 
+if lang_choice == "繁體中文":
+    lang_code = 'zh_TW'
+    
+    # Construct the exact path where the system expects the file to be
+    expected_file = os.path.join(localizepath, lang_code, 'LC_MESSAGES', 'messages.mo')
+    
+    # 1. Check if the file physically exists at that path
+    if not os.path.exists(expected_file):
+        st.error(f"⚠️ Critical Error: File not found on server.")
+        st.code(f"Looking for: {expected_file}")
+        st.info("Tip: Check if the folder name on GitHub is exactly 'zh_TW' (case sensitive).")
+        _ = lambda s: s
+    
+    # 2. Try to load it
+    else:
+        try:
+            translator = gettext.translation('messages', localedir=localizepath, languages=[lang_code])
+            translator.install()
+            _ = translator.gettext
+        except Exception as e:
+            st.error(f"⚠️ Gettext Validation Error: {e}")
+            _ = lambda s: s
+
+else:
+    # English acts as default, no need to load file
+    lang_code = 'en' 
+    _ = lambda s: s# --- START TRANSLATION SETUP ---
+localizepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locales')
+
+if lang_choice == "繁體中文":
+    lang_code = 'zh_TW'
+    
+    # Construct the exact path where the system expects the file to be
+    expected_file = os.path.join(localizepath, lang_code, 'LC_MESSAGES', 'messages.mo')
+    
+    # 1. Check if the file physically exists at that path
+    if not os.path.exists(expected_file):
+        st.error(f"⚠️ Critical Error: File not found on server.")
+        st.code(f"Looking for: {expected_file}")
+        st.info("Tip: Check if the folder name on GitHub is exactly 'zh_TW' (case sensitive).")
+        _ = lambda s: s
+    
+    # 2. Try to load it
+    else:
+        try:
+            translator = gettext.translation('messages', localedir=localizepath, languages=[lang_code])
+            translator.install()
+            _ = translator.gettext
+        except Exception as e:
+            st.error(f"⚠️ Gettext Validation Error: {e}")
+            _ = lambda s: s
+
+else:
+    # English acts as default, no need to load file
+    lang_code = 'en' 
+    _ = lambda s: s
+# --- END TRANSLATION SETUP ---
 rules = {
     "origin": ["#poemformats#"],  # chooses one of eight common poem formats in chinese poetry
     "poemformats": [
