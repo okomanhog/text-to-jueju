@@ -263,7 +263,7 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
 
             if repetition_filter:
                 poem_content = re.sub(r'【.*?】', '', poem) # removes title etc.
-                poem_words = [w for w in jieba.cut(poem_content) if w.strip()] 
+                poem_words = [w for w in jieba.cut(poem_content, HMM=False) if w.strip()] # HMM is in order to adhere to the same chopping as in original
                 if len(poem_words) != len(set(poem_words)): # if unique count != total count, there are duplicates. regenerate.
                     continue
             
