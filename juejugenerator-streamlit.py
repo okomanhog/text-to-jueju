@@ -9,17 +9,6 @@ from collections import Counter  # for optional frequency filtering
 
 st.set_page_config(page_title="Chinese Wujue Poem Generator", layout="centered")
 
-with st.expander("AI Usage Disclaimer"):
-    st.info('''
-- Gemini was used to map the rhyme group in python, pinyin equivalents to each final based on publicly available table
-to reduce repetitive work, reference: https://gemini.google.com/share/72f39776edf1 (AI），https://zh.wikipedia.org/zh-hant/%E4%B8%AD%E8%8F%AF%E6%96%B0%E9%9F%BB (table)
-- ChatGPT was used to map all jieba POS tags to the three categories named Noun, Verb, Adjective
-to reduce repetitive workload and leverage its knowledge on different grammatical categories, 
-reference: https://chatgpt.com/s/t_6978d8c814a88191ac5f497d28d3e0cf
-- Gemini was used to turn the existing python code into a streamlit application for demo purposes based on
-given requirements, reference: https://gemini.google.com/share/dd1a4ec00677
-''')
-
 rules = {
     "origin": ["#poemformats#"],  # chooses one of eight common poem formats in chinese poetry
     "poemformats": [
@@ -240,11 +229,12 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
     return generated_poems
 
 # streamlit logic
-st.title("Chinese Wujue Poem Generator")
+st.title("Verse Alchemist")
+st.header("Turn your text into Jueju Poems"
 
 user_input = st.text_area("Enter your Chinese text (100 - 10000 characters)", height=200)
 
-st.write("**OR**")
+st.write("**Or**")
 
 wordbase_option = st.selectbox(
     "Choose Wordbase",
@@ -306,3 +296,14 @@ if raw_text:
                 st.markdown("### Generated Poems")
                 for p in poems:
                     st.code(p, language='text')
+
+with st.expander("AI Usage Disclaimer"):
+    st.info('''
+- Gemini was used to map the rhyme group in python, pinyin equivalents to each final based on publicly available table
+to reduce repetitive work, reference: https://gemini.google.com/share/72f39776edf1 (AI），https://zh.wikipedia.org/zh-hant/%E4%B8%AD%E8%8F%AF%E6%96%B0%E9%9F%BB (table)
+- ChatGPT was used to map all jieba POS tags to the three categories named Noun, Verb, Adjective
+to reduce repetitive workload and leverage its knowledge on different grammatical categories, 
+reference: https://chatgpt.com/s/t_6978d8c814a88191ac5f497d28d3e0cf
+- Gemini was used to turn the existing python code into a streamlit application for demo purposes based on
+given requirements, reference: https://gemini.google.com/share/dd1a4ec00677
+''')
