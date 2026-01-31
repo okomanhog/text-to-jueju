@@ -9,8 +9,8 @@ from collections import Counter  # for optional frequency filtering
 
 st.set_page_config(page_title="Chinese Wujue Poem Generator", layout="centered")
 
-''' 
-AI Usage Disclaimer: 
+with st.expander("AI Usage Disclaimer"):
+    st.info('''
 - Gemini was used to map the rhyme group in python, pinyin equivalents to each final based on publicly available table
 to reduce repetitive work, reference: https://gemini.google.com/share/72f39776edf1 (AI），https://zh.wikipedia.org/zh-hant/%E4%B8%AD%E8%8F%AF%E6%96%B0%E9%9F%BB (table)
 - ChatGPT was used to map all jieba POS tags to the three categories named Noun, Verb, Adjective
@@ -18,7 +18,7 @@ to reduce repetitive workload and leverage its knowledge on different grammatica
 reference: https://chatgpt.com/s/t_6978d8c814a88191ac5f497d28d3e0cf
 - Gemini was used to turn the existing python code into a streamlit application for demo purposes based on
 given requirements, reference: https://gemini.google.com/share/dd1a4ec00677
-'''
+''')
 
 rules = {
     "origin": ["#poemformats#"],  # chooses one of eight common poem formats in chinese poetry
@@ -242,21 +242,23 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
 # streamlit logic
 st.title("Chinese Wujue Poem Generator")
 
+user_input = st.text_area("Enter your Chinese text (100 - 10000 characters)", height=200)
+
+st.write("OR")
+
 wordbase_option = st.selectbox(
-    "Choose Wordbase",
-    ("唐詩三百首 - Three Hundred Tang Poems", "不同意罷免留言 - Anti Recall Comments", "Add own Wordbase")
+    "Choose Preexisting Wordbase",
+    ("唐詩三百首 - Three Hundred Tang Poems", "不同意罷免留言 - Anti Recall Comments")
 )
 
 raw_text = ""
 
 # 2. Handle Wordbase Input
-if wordbase_option == "Add own Wordbase":
-    user_input = st.text_area("Enter your Chinese text (100 - 10000 characters)", height=200)
-    if user_input:
-        if 100 <= len(user_input) <= 10000:
-            raw_text = user_input
-        else:
-            st.warning("Please ensure text is between 100 and 10000 characters.")
+if user_input:
+    if 100 <= len(user_input) <= 10000:
+        raw_text = user_input
+    else:
+        st.warning("Please ensure text is between 100 and 10000 characters.")
 else:
     file_path = f'wordbases/{wordbase_option}.txt'
     try:
@@ -269,8 +271,6 @@ if raw_text:
         min_freq = 1 # fixed based on original code defaults
         dictionary_data, available_rhyme_groups, unique_count = analyze_wordbase(raw_text, min_freq)
     
-    st.success(f"Analysis Complete! Based on total of {unique_count} words in {len(available_rhyme_groups)} rhyme groups.")
-
     if not available_rhyme_groups:
         st.error("No valid rhyme groups found in text. Ensure that your database is in Chinese.")
     else:
@@ -283,7 +283,7 @@ if raw_text:
         with col2:
             num_poems = st.slider("Number of Poems", 1, 10, 5)
 
-        allow_repetition = st.checkbox("Allow word repetition in poems?", value=False)
+        allow_repetition = st.checkbox("allow character repetitions", value=False)
         repetition_filter = not allow_repetition 
 
         if st.button("Generate Poem"):
@@ -298,6 +298,11 @@ if raw_text:
             
             if not poems:
                 st.warning("Could not generate valid poems with current constraints. Try allowing repetition, changing rhyme group or use a bigger Wordbase).")
+            elif len(poems) < num_poems:
+                st.warning("Could not generate as many poems as requested with current constraints. Try allowing character repetition, changing rhyme group or use a bigger wordbase for more resutls).")
+                st.markdown("### Generated Poems")
+                for p in poems:
+                    st.code(p, language='text')
             else:
                 st.markdown("### Generated Poems")
                 for p in poems:
