@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgid "點字成詩"
+msgstr "Verse Alchemist"
+
+msgid "Verse Alchemist"
+msgstr "Verse Alchemist"
+
+msgid "Turn any Text into Jueju Poems"
+msgstr "Turn any Text into Jueju Poems"
+
+msgid "Enter your Chinese text (100 - 10000 characters)"
+msgstr "Enter your Chinese text (100 - 10000 characters)"
+
+msgid "**Or**"
+msgstr "**Or**"
+
+msgid "Choose Wordbase"
+msgstr "Choose Wordbase"
+
+msgid "唐詩三百首 - Three Hundred Tang Poems"
+msgstr "唐詩三百首 - Three Hundred Tang Poems"
+
+msgid "不同意罷免留言 - Anti Recall Comments"
+msgstr "不同意罷免留言 - Anti Recall Comments"
+
+msgid "Please ensure text is between 100 and 10000 characters."
+msgstr "Please ensure text is between 100 and 10000 characters."
+
+msgid "File '{file_path}' not found. Please check the 'wordbases' folder in your repository."
+msgstr "File '{file_path}' not found. Please check the 'wordbases' folder in your repository."
+
+msgid "Analyzing wordbase..."
+msgstr "Analyzing wordbase..."
+
+msgid "No valid rhyme groups found in text. Ensure that your database is in Chinese."
+msgstr "No valid rhyme groups found in text. Ensure that your database is in Chinese."
+
+msgid "Random"
+msgstr "Random"
+
+msgid "Choose Rhyme Group (Optional)"
+msgstr "Choose Rhyme Group (Optional)"
+
+msgid "Number of Poems"
+msgstr "Number of Poems"
+
+msgid "Allow Character Repetitions"
+msgstr "Allow Character Repetitions"
+
+msgid "Generate Poem"
+msgstr "Generate Poem"
+
+msgid "Could not generate valid poems with current constraints. Try allowing repetition, changing rhyme group or use a bigger Wordbase)."
+msgstr "Could not generate valid poems with current constraints. Try allowing repetition, changing rhyme group or use a bigger Wordbase)."
+
+msgid "Could not generate as many poems as requested with current constraints. Try allowing character repetition, changing rhyme group or use a bigger wordbase for more resutls)."
+msgstr "Could not generate as many poems as requested with current constraints. Try allowing character repetition, changing rhyme group or use a bigger wordbase for more resutls)."
+
+msgid "### Generated Poems"
+msgstr "### Generated Poems"
+
+msgid "AI Usage Disclaimer"
+msgstr "AI Usage Disclaimer"
+
+msgid ""
+"\n"
+"- Gemini was used to map the rhyme group in python, pinyin equivalents to each final based on publicly available table\n"
+"to reduce repetitive work, reference: https://gemini.google.com/share/72f39776edf1 (AI），https://zh.wikipedia.org/zh-hant/%E4%B8%AD%E8%8F%AF%E6%96%B0%E9%9F%BB (table)\n"
+"- ChatGPT was used to map all jieba POS tags to the three categories named Noun, Verb, Adjective\n"
+"to reduce repetitive workload and leverage its knowledge on different grammatical categories, \n"
+"reference: https://chatgpt.com/s/t_6978d8c814a88191ac5f497d28d3e0cf\n"
+"- Gemini was used to turn the existing python code into a streamlit application for demo purposes based on\n"
+"given requirements, reference: https://gemini.google.com/share/dd1a4ec00677\n"
+""
+msgstr ""
+"\n"
+"- Gemini was used to map the rhyme group in python, pinyin equivalents to each final based on publicly available table\n"
+"to reduce repetitive work, reference: https://gemini.google.com/share/72f39776edf1 (AI），https://zh.wikipedia.org/zh-hant/%E4%B8%AD%E8%8F%AF%E6%96%B0%E9%9F%BB (table)\n"
+"- ChatGPT was used to map all jieba POS tags to the three categories named Noun, Verb, Adjective\n"
+"to reduce repetitive workload and leverage its knowledge on different grammatical categories, \n"
+"reference: https://chatgpt.com/s/t_6978d8c814a88191ac5f497d28d3e0cf\n"
+"- Gemini was used to turn the existing python code into a streamlit application for demo purposes based on\n"
+"given requirements, reference: https://gemini.google.com/share/dd1a4ec00677\n"
+""
