@@ -14,8 +14,7 @@ lang_choice = st.sidebar.selectbox("Language / 語言", ["繁體中文", "Englis
 lang_code = 'zh_TW' if lang_choice == "繁體中文" else 'en' # traditional chinese acts as a default considering the main target group
 
 try:
-    localizepath = os.path.join(os.path.dirname(__file__), 'locales')
-    _ = gettext.translation('messages', localedir=localizepath, languages=[lang_code]).gettext
+    _ = gettext.translation('messages', localedir='locales', languages=[lang_code]).gettext
 except:
     _ = lambda s: s
 
