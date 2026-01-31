@@ -285,7 +285,7 @@ st.write(_("**Or**"))
 
 wordbase_option = st.selectbox(
     _("Choose Wordbase"),
-    (_("唐詩三百首 - Three Hundred Tang Poems"), _("不同意罷免留言 - Anti Recall Comments"))
+    (("唐詩三百首 - Three Hundred Tang Poems"), ("不同意罷免留言 - Anti Recall Comments"))
 )
 
 raw_text = ""
