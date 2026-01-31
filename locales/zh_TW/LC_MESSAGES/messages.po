@@ -1,0 +1,53 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh_TW\n"
+
+msgid "Verse Alchemist"
+msgstr "點字成詩"
+
+msgid "Turn any Text into Jueju Poems"
+msgstr "將任何文本轉化為絕句詩"
+
+msgid "Enter your Chinese text (100 - 10000 characters)"
+msgstr "請輸入中文文本（100 - 10000 字）"
+
+msgid "**Or**"
+msgstr "**或**"
+
+msgid "Choose Wordbase"
+msgstr "選擇詞庫"
+
+msgid "唐詩三百首 - Three Hundred Tang Poems"
+msgstr "唐詩三百首"
+
+msgid "不同意罷免留言 - Anti Recall Comments"
+msgstr "不同意罷免留言"
+
+msgid "Please ensure text is between 100 and 10000 characters."
+msgstr "請確保文本長度在 100 到 10000 字之間。"
+
+msgid "Analyzing wordbase..."
+msgstr "正在分析詞庫..."
+
+msgid "Random"
+msgstr "隨機"
+
+msgid "Choose Rhyme Group (Optional)"
+msgstr "選擇押韻組（可選）"
+
+msgid "Number of Poems"
+msgstr "詩歌數量"
+
+msgid "Allow Character Repetitions"
+msgstr "允許字符重複"
+
+msgid "Generate Poem"
+msgstr "生成詩歌"
+
+msgid "### Generated Poems"
+msgstr "### 生成的詩歌"
+
+msgid "AI Usage Disclaimer"
+msgstr "AI 使用聲明"
