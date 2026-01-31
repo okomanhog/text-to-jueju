@@ -8,12 +8,12 @@ import random  # to choose rhyme group
 from collections import Counter  # for optional frequency filtering
 import gettext
 
+st.set_page_config(page_title=_("點字成詩 - Verse Alchemist"), layout="centered")
+
 lang_choice = st.sidebar.selectbox("Language / 語言", ["繁體中文", "English"]) # adds multilingual support
 lang_code = 'zh_TW' if lang_choice == "繁體中文" else 'en' # traditional chinese acts as a default considering the main target group
 
 _ = gettext.translation('messages', localedir='locales', languages=[lang_code]).gettext
-
-st.set_page_config(page_title=_("點字成詩 - Verse Alchemist"), layout="centered")
 
 rules = {
     "origin": ["#poemformats#"],  # chooses one of eight common poem formats in chinese poetry
