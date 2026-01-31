@@ -263,7 +263,7 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
 
             if repetition_filter:
                 poem_content = re.sub(r'【.*?】', '', poem) # removes title etc.
-                chars = [character for caracter in poem_content if '\u4e00' <= character <= '\u9fa5'] # only includes chinese characters, ignores next line \n 
+                chars = [character for character in poem_content if '\u4e00' <= character <= '\u9fa5'] # only includes chinese characters, ignores next line \n 
                 if len(chars) != len(set(chars)): 
                     continue
             
