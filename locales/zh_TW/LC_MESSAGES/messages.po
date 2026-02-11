@@ -19,24 +19,6 @@ msgstr "**或**"
 msgid "Choose Wordbase"
 msgstr "選擇詞庫"
 
-msgid "唐詩三百首 - Three Hundred Tang Poems"
-msgstr "唐詩三百首"
-
-msgid "不同意罷免雜志 - Anti Recall Magazine"
-msgstr "不同意罷免雜誌"
-
-msgid "西遊記 - Journey to the West"
-msgstr "西遊記"
-
-msgid "不同意罷免留言 - Anti Recall Comments"
-msgstr "不同意罷免留言"
-
-msgid "同意罷免留言 - Pro Recall Comments"
-msgstr "同意罷免留言"
-
-msgid "不同意罷免雜志 (含圖片) - Anti Recall Magazine (With Images)"
-msgstr "不同意罷免雜誌（含圖片）"
-
 msgid "Please ensure text is between 100 and 10000 characters."
 msgstr "請確保文本長度在 100 到 10000 字之間。"
 
