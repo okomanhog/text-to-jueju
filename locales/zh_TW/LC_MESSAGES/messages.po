@@ -22,14 +22,32 @@ msgstr "選擇詞庫"
 msgid "唐詩三百首 - Three Hundred Tang Poems"
 msgstr "唐詩三百首"
 
+msgid "不同意罷免雜志 - Anti Recall Magazine"
+msgstr "不同意罷免雜誌"
+
+msgid "西遊記 - Journey to the West"
+msgstr "西遊記"
+
 msgid "不同意罷免留言 - Anti Recall Comments"
 msgstr "不同意罷免留言"
+
+msgid "同意罷免留言 - Pro Recall Comments"
+msgstr "同意罷免留言"
+
+msgid "不同意罷免雜志 (含圖片) - Anti Recall Magazine (With Images)"
+msgstr "不同意罷免雜誌（含圖片）"
 
 msgid "Please ensure text is between 100 and 10000 characters."
 msgstr "請確保文本長度在 100 到 10000 字之間。"
 
+msgid "File '{file_path}' not found. Please check the 'wordbases' folder in your repository."
+msgstr "找不到檔案 '{file_path}'。請檢查 repository 中的 'wordbases' 資料夾。"
+
 msgid "Analyzing wordbase..."
 msgstr "正在分析詞庫..."
+
+msgid "No valid rhyme groups found in text. Ensure that your database is in Chinese."
+msgstr "文本中未找到有效的韻部。請確保您的資料庫為中文內容。"
 
 msgid "Random"
 msgstr "隨機"
@@ -45,6 +63,12 @@ msgstr "允許字符重複"
 
 msgid "Generate Poem"
 msgstr "生成詩歌"
+
+msgid "Could not generate valid poems with current constraints. Try allowing repetition, changing rhyme group or use a bigger Wordbase)."
+msgstr "在當前限制下無法生成有效的詩歌。請嘗試允許重複字、更改韻部或使用更大的詞庫。"
+
+msgid "Could not generate as many poems as requested with current constraints. Try allowing character repetition, changing rhyme group or use a bigger wordbase for more resutls)."
+msgstr "在當前限制下無法生成指定數量的詩歌。請嘗試允許字符重複、更改韻部或使用更大的詞庫以獲得更多結果。"
 
 msgid "### Generated Poems"
 msgstr "### 生成的詩歌"
