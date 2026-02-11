@@ -236,7 +236,7 @@ def generate_poem(dictionary, rules, rhymegroups, user_rhyme_choice, repetition_
     
     for i in range(num_poems):
         attempt = 0
-        max_attempts = 10 # limit attempts to prevent infinite loops if dictionary is too small
+        max_attempts = 100 # limit attempts to prevent infinite loops if dictionary is too small
         
         while attempt < max_attempts:
             attempt += 1
