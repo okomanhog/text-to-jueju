@@ -76,7 +76,12 @@ rules = {
 
 def save_poem_to_file(content, filename="poems.txt"):
     with open(filename, "a", encoding="utf-8") as poemcollection:
-        poemcollection.write(content + "\n\n")
+        path = globals().get('file_path')
+        
+        if path:
+            poemcollection.write("Poem generated based on: " + path + "\n" + content + "\n\n")
+        else:
+            poemcollection.write("Poem generated based on user wordbase\n" + content + "\n\n")
 
 def get_zhuyin(word):
     return dragonmapper.hanzi.to_zhuyin(word, all_readings=False, container='[]')
@@ -137,9 +142,7 @@ def get_grammatical_format(word):
     else:
         return "名"
 
-# 
-
-print("Welcome to Verse Alchemist!")
+print("Welcome to Verse Alchemist! This program converts any text to Jueju poems, choose from below:")
 print("1. Use the existing file")
 print("2. Input your own text")
 choice = input("Please enter 1 or 2: ").strip()
@@ -202,7 +205,7 @@ if not rhymegroups:
     print("No valid rhyme groups found in text. Ensure that your text/database is in Chinese.")
     sys.exit()
     
-print(f"\nGenerating 5 poems based on a total of {unique_word_count} unique words (frequency >= {min_frequency}):\n")
+print(f"\nGenerating poems based on a total of {unique_word_count} unique words:\n")
 print("-" * 40)
 
 for i in range(5):
@@ -235,5 +238,8 @@ for i in range(5):
         print("-" * 40)
         save_poem_to_file(poem)
         break 
+    else:
+        print("\nThe text corpus seems too small. Please provide a bigger one.")
+        sys.exit()
 
 print("\nDone! Poems have been saved to 'poems.txt'.")
